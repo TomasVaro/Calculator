@@ -6,9 +6,8 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            bool running = true;
             Console.WriteLine("Welcome to Calculator\n");
-            while (running)
+            while (true)
             {
                 Console.WriteLine("Choose one of the alternatives:\n1 - Addition\n2 - Subtraction\n3 - Multiplication\n4 - Division\n5 - End application");
                 try
@@ -17,8 +16,8 @@ namespace Calculator
                     Console.WriteLine();
                     if (userInput > 0 && userInput < 5)
                     {
-                        bool isNumber = false;
-                        while (!isNumber)
+                        bool running = true;
+                        while (running)
                         {
                             try
                             {
@@ -27,7 +26,7 @@ namespace Calculator
                                 double firstNumber = Convert.ToDouble(Console.ReadLine());
                                 Console.WriteLine("Enter the second number:");
                                 double secondNumber = Convert.ToDouble(Console.ReadLine());
-                                isNumber = true;
+                                running = false;
                                 switch (userInput)
                                 {
                                     case 1:
@@ -52,6 +51,8 @@ namespace Calculator
                             {
                                 Console.WriteLine("You must enter a digit or decimal number! Try again.");
                             }
+                            Console.ReadKey();
+                            Console.Clear();
                         }
                     }
                     else if (userInput == 5)
@@ -78,17 +79,17 @@ namespace Calculator
         static void Subtraction(double firstNumber, double secondNumber)
         {
             double diff = firstNumber - secondNumber;
-            Console.WriteLine(firstNumber + " + " + secondNumber + " = " + diff + "\n");
+            Console.WriteLine(firstNumber + " - " + secondNumber + " = " + diff + "\n");
         }
         static void Multiplication(double firstNumber, double secondNumber)
         {
             double prod = firstNumber * secondNumber;
-            Console.WriteLine(firstNumber + " + " + secondNumber + " = " + prod + "\n");
+            Console.WriteLine(firstNumber + " * " + secondNumber + " = " + prod + "\n");
         }
         static void Division(double firstNumber, double secondNumber)
         {
             double quotient = firstNumber / secondNumber;
-            Console.WriteLine(firstNumber + " + " + secondNumber + " = " + quotient + "\n");
+            Console.WriteLine(firstNumber + " / " + secondNumber + " = " + quotient + "\n");
         }
     }
 }
