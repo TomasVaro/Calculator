@@ -30,20 +30,25 @@ namespace Calculator
                                 switch (userInput)
                                 {
                                     case 1:
-                                        Addition(firstNumber, secondNumber);
+                                        double sum = Addition(firstNumber, secondNumber);
+                                        Console.WriteLine(firstNumber + " + " + secondNumber + " = " + sum + "\n");
                                         break;
                                     case 2:
-                                        Subtraction(firstNumber, secondNumber);
+                                        double diff = Subtraction(firstNumber, secondNumber);
+                                        Console.WriteLine(firstNumber + " - " + secondNumber + " = " + diff + "\n");
                                         break;
                                     case 3:
-                                        Multiplication(firstNumber, secondNumber);
+                                        double prod = Multiplication(firstNumber, secondNumber);
+                                        Console.WriteLine(firstNumber + " * " + secondNumber + " = " + prod + "\n");
                                         break;
                                     case 4:
-                                        if (secondNumber != 0)
+                                        double quotient = Division(firstNumber, secondNumber);
+                                        if (quotient == 0)
                                         {
-                                            Division(firstNumber, secondNumber);
+                                            running = true;
+                                            break;
                                         }
-                                        else Console.WriteLine("It's not allowed to divide by zero! Try again.\n");
+                                        Console.WriteLine(firstNumber + " / " + secondNumber + " = " + quotient + "\n");
                                         break;
                                 }
                             }
@@ -51,9 +56,9 @@ namespace Calculator
                             {
                                 Console.WriteLine("You must enter a digit or decimal number! Try again.");
                             }
-                            Console.ReadKey();
-                            Console.Clear();
                         }
+                        Console.ReadKey();
+                        Console.Clear();
                     }
                     else if (userInput == 5)
                     {
@@ -71,25 +76,33 @@ namespace Calculator
                 }
             }
         }
-        static void Addition(double firstNumber, double secondNumber)
+        static double Addition(double firstNumber, double secondNumber)
         {
             double sum = firstNumber + secondNumber;
-            Console.WriteLine(firstNumber + " + " + secondNumber + " = " + sum + "\n");
+            return sum;
         }
-        static void Subtraction(double firstNumber, double secondNumber)
+        static double Subtraction(double firstNumber, double secondNumber)
         {
             double diff = firstNumber - secondNumber;
-            Console.WriteLine(firstNumber + " - " + secondNumber + " = " + diff + "\n");
+            return diff;
         }
-        static void Multiplication(double firstNumber, double secondNumber)
+        static double Multiplication(double firstNumber, double secondNumber)
         {
             double prod = firstNumber * secondNumber;
-            Console.WriteLine(firstNumber + " * " + secondNumber + " = " + prod + "\n");
+            return prod;
         }
-        static void Division(double firstNumber, double secondNumber)
+        static double Division(double firstNumber, double secondNumber)
         {
-            double quotient = firstNumber / secondNumber;
-            Console.WriteLine(firstNumber + " / " + secondNumber + " = " + quotient + "\n");
+            double quotient = 0;
+            if (secondNumber == 0)
+            {
+                Console.WriteLine("It's not allowed to divide by zero! Try again.\n");
+            }
+            else
+            {
+                quotient = firstNumber / secondNumber;
+            }
+            return quotient;
         }
     }
 }
